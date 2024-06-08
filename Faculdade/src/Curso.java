@@ -1,47 +1,30 @@
 import java.util.ArrayList;
+import java.util.List;
 
-public class Curso{
+public class Curso {
     private String nome;
-    private int codigo;
-    private String professorResponsavel;
-    private ArrayList<Aluno> alunosMatriculados;
-    
-    public Curso(String nome, int idade, String cpf, String nome2, int codigo, String professorResponsavel) {
+    private String codigo;
+    private Professor professorResponsavel;
+    private List<Aluno> alunos;
+
+    public Curso(String nome, String codigo, Professor professorResponsavel) {
         this.nome = nome;
         this.codigo = codigo;
         this.professorResponsavel = professorResponsavel;
-        this.alunosMatriculados = new ArrayList<>();
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public int getCodigo() {
-        return codigo;
-    }
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-    public String getProfessorResponsavel() {
-        return professorResponsavel;
-    }
-    public void setProfessorResponsavel(String professorResponsavel) {
-        this.professorResponsavel = professorResponsavel;
+        this.alunos = new ArrayList<>();
     }
 
-    public void AdicionarAluno(Aluno aluno) {
-       alunosMatriculados.add(aluno);
+    public void adicionarAluno(Aluno aluno) {
+        alunos.add(aluno);
     }
 
-    public void RemoverAluno(Aluno aluno) {
-        alunosMatriculados.add(aluno);
+    public void removerAluno(Aluno aluno) {
+        alunos.remove(aluno);
     }
 
     public void listarAlunos() {
-        for (Aluno aluno : alunosMatriculados) {
-            System.out.println("Nome: " + aluno.getNome() + ", Matrícula: " + aluno.getMatricula());
+        for (Aluno aluno : alunos) {
+            aluno.exibirDados();
         }
     }
 }

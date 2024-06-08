@@ -1,35 +1,28 @@
-public class Aluno extends Pessoa{
-    private int matricula;
+public class Aluno extends Pessoa {
+    private String matricula;
     private String curso;
+    private int cursosMatriculados;
 
-    public Aluno(String nome, int idade, String cpf, int matricula, String curso) {
+    public Aluno(String nome, int idade, String cpf, String matricula, String curso) {
         super(nome, idade, cpf);
         this.matricula = matricula;
         this.curso = curso;
-    }
-    public int getMatricula() {
-        return matricula;
-    }
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
-    }
-    public String getCurso() {
-        return curso;
-    }
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
-    
-    public void exibirDados() {
-        System.out.println("*******Informação********");
-        System.out.println("nome:" + super.getNome());
-        System.out.println("Idade: " + super.getIdade());
-        System.out.println("CPF: " + super.getCpf());
-        System.out.println("Matricula: " + this.getMatricula());
-        System.out.println("Curso: " + this.getCurso());
+        this.cursosMatriculados = 0;
     }
 
-    public void realizarMatricula() {
-        System.out.println("Se Matricular");
+    @Override
+    public void exibirDados() {
+        super.exibirDados();
+        System.out.println("Matricula: " + matricula);
+        System.out.println("Curso: " + curso);
+    }
+
+    public void realizarMatricula(String matricula, String curso) throws MatriculaInvalidaException {
+        if (cursosMatriculados >= 5) {
+            throw new MatriculaInvalidaException("Aluno não pode se matricular em mais de 5 cursos simultaneamente.");
+        }
+        this.matricula = matricula;
+        this.curso = curso;
+        cursosMatriculados++;
     }
 }
